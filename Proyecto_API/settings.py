@@ -80,16 +80,12 @@ WSGI_APPLICATION = 'Proyecto_API.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'localhost',
-        'PORT': '',
-        'USER': 'root',
-        'PASSWORD' : '',
-        'NAME' : 'django_api',
-        'OPTIONS':{
-            'init_command':"SET sql_mode='STRICT_TRANS_TABLES'",
-            'charset':'utf8mb4',
-        },
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'ec2-3-234-131-8.compute-1.amazonaws.com',
+        'PORT': '5432',
+        'USER': 'nblozspsdhlpyy',
+        'PASSWORD' : 'fe6c37b9f5478f49665355844c96bf56f9cd06ca63a32ff91c76479179523bff',
+        'NAME' : 'df3nd21u189pb7',
     }
 }
 
