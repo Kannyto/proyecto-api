@@ -1,7 +1,9 @@
 from operator import le
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
-from django.shortcuts import render
+# from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
 import json
@@ -10,11 +12,11 @@ from .models import Company
 
 # Create your views here.
 
-class CompanyView(View):
+class CompanyView(APIView):
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs, Response)
 
     def get(self,request,id=0):
         if (id>0):
@@ -24,14 +26,14 @@ class CompanyView(View):
                 datos={'mensaje':'Correcto','companies':company}
             else:
                 datos={'mensaje':'Companies no encontradas'}
-            return JsonResponse(datos)
+            return JsonResponse(datos,Response)
         else:
             companies=list(Company.objects.values())
             if len(companies)>0:
                 datos={'mensaje':'Correcto','companies':companies}
             else:
                 datos={'mensaje':'Companies no encontradas'}
-            return JsonResponse(datos)
+            return JsonResponse(datos,Response)
     
     def post(self,request):
         # print(request.body)
@@ -39,7 +41,7 @@ class CompanyView(View):
         # print(jd)
         Company.objects.create(name=jd['name'],website=jd['website'],fundacion=jd['fundacion'])
         datos={'mensaje':'Correcto'}
-        return JsonResponse(datos)
+        return JsonResponse(datos,Response)
 
     def put(self,request,id=0):
         jd=json.loads(request.body)
@@ -53,7 +55,7 @@ class CompanyView(View):
             datos={'mensaje':'Correcto'}
         else:
             datos={'mensaje':'Companies no encontradas'}
-        return JsonResponse(datos)
+        return JsonResponse(datos,Response)
 
     def delete(self,request,id=0):
         companies=list(Company.objects.filter(id=id).values())
@@ -62,4 +64,4 @@ class CompanyView(View):
             datos={'mensaje':'Correcto'}
         else:
             datos={'mensaje':'Companies no encontradas'}
-        return JsonResponse(datos)
+        return JsonResponse(datos,Response)
