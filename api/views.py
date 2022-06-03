@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
-import json
+import json, urllib
 
 from .models import Company
 
@@ -17,6 +17,12 @@ class CompanyView(APIView):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
+    
+    def get2(self, request)
+        url = "https://www.google.com/"
+        response = urllib.urlopen(url)
+        data = json.loads(response.read())
+        print data
 
     def get(self,request,id=0):
         if (id>0):
