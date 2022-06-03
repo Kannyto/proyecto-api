@@ -54,7 +54,7 @@ class CompanyView(APIView):
             company.save()
             datos={'mensaje':'Correcto'}
         else:
-            datos={'mensaje':'Companies no encontradas'}
+            datos={'mensaje':'Companias no encontradas'}
         return JsonResponse(datos)
 
     def delete(self,request,id=0):
