@@ -18,11 +18,11 @@ class CompanyView(APIView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     
-    def get2(self, request)
-        url = "https://www.google.com/"
-        response = urllib.urlopen(url)
-        data = json.loads(response.read())
-        print data
+#     def get2(self, request)
+#         url = "https://www.google.com/"
+#         response = urllib.urlopen(url)
+#         data = json.loads(response.read())
+#         print data
 
     def get(self,request,id=0):
         if (id>0):
