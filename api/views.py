@@ -25,7 +25,7 @@ class CompanyView(APIView):
                 company=companies[0]
                 datos={'mensaje':'Correcto','companies':company}
             else:
-                datos={'mensaje':'Companies no encontradas'}
+                datos={'mensaje':'Companias no encontradas'}
             return JsonResponse(datos)
         else:
             companies=list(Company.objects.values())
