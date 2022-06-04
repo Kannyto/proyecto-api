@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
 import json, urllib
+import requests
 
 from .models import Company
 
@@ -18,11 +19,19 @@ class CompanyView(APIView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     
-    def get(self, request)
-        url = "https://www.google.com/"
-        response = urllib.urlopen(url)
-        data = json.loads(response.read())
-        print data
+    def generate_request(url, params={}):
+        response = requests.get(url, params=params)
+
+        if response.status_code == 200:
+            return response.json()
+
+    def get_username(params={}):
+        response = generate_request('https://randomuser.me/api', params)
+        if response:
+            user = response.get('results')[0]
+            return user.get('name').get('first')
+
+        return ''"
 
 #     def get(self,request,id=0):
 #         if (id>0):
